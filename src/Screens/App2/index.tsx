@@ -3,12 +3,32 @@ import Styled from 'styled-components/native';
 
 const Scroll = Styled.ScrollView`
     flex: 1;
-    height: 300%;
+    background: #000000;
+    
+    
+    
+    {
+        nativeEvent: {
+          contentInset: {bottom, 10, right, top},
+          contentOffset: {x, y},
+          contentSize: {height, width},
+          layoutMeasurement: {100%, 100%},
+          zoomScale
+        }
+    }
+      
+
+
+
 `;
-const Container = Styled.View`
-    display: flex;
+
+const Container = Styled.SafeAreaView`
     width: 100%;
-    height: 500px;
+    height: 100%;
+`;
+const Container2 = Styled.SafeAreaView`
+    width: 100%;
+    height: 100%;
 `;
 const Text = Styled.Text`
     font-size: 100px;
@@ -194,12 +214,19 @@ const Line1 = Styled.View`
 const Line2 = Styled(Line1)`
     top: 916px;
 `;
-const Desc21 = Styled.Text`
+
+interface TextPosition {
+    top?: any,
+}
+const Desc21 = Styled.Text<TextPosition>`
     font-family: Poppins;
     font-style: normal;
     font-weight: bold;
     font-size: 37.2127px;
     line-height: 43px;
+    color: #000000;
+
+    top: ${props => props.top};
 `;
 const Desc22 = Styled.Text`
     font-family: Poppins;
@@ -209,8 +236,10 @@ const Desc22 = Styled.Text`
     line-height: 43px;
     color: #BFB8B8;
 `;
-const desc21 = [`50+`,'45+,`5+','700+'];
+const desc21 = [`50+`,`45+`,`5+`,`700+`];
+const desc21Position = [[`20%`,`70%`],['639px','786px']];
 const desc22 = [`Projects Completed`, `Github Repository`,`Years of Experience`,`Youtube Subscribers`];
+const desc22Position = [[`12%`,`62%`],['686px','833px']];
 
 const Test = `
 a
@@ -242,17 +271,36 @@ fz
 a
 `;
 
+const TestCode = `
+<Main2>
+<Line1 />
+    <Desc21 top='100px'> {desc21[0]}</Desc21>
+    <Desc22> {desc22[0]}</Desc22>
+
+    <Desc21 top={desc21Position[0][1]}> {desc21[1]}</Desc21>
+    <Desc22> {desc22[1]}</Desc22>
+
+    <Desc21 top={desc21Position[0][0]}> {desc21[2]}</Desc21>
+    <Desc22> {desc22[2]}</Desc22>
+
+    <Desc21 top={desc21Position[0][1]}> {desc21[3]}</Desc21>
+    <Desc22> {desc22[3]}</Desc22>
+<Line2 />
+</Main2>
+`;
 
 
 
 
 
 
-const Main3 = Styled.View``;
+const Main3 = Styled.View`
+`;
 const Main4 = Styled.View``;
 
 const Footer = Styled.View``;
 const Copyright = Styled.View``;
+
 
 interface Props {
 }
@@ -263,10 +311,11 @@ const App2 = ({}: Props) => {
             <Name>reboot13</Name>
             <Menu />
         </Header>
-        <Scroll>            
+       <Container2>
+            <Scroll >            
             <Main1>
                 <Title1>
-                    {title1}
+                        {title1}
                     <Title11>{title11}</Title11>
                 </Title1>
                 <Desc1>{desc1}</Desc1>
@@ -279,16 +328,10 @@ const App2 = ({}: Props) => {
                 </ContactBtn>
                 <Picture1 source={require(`~/Assets/Pictures/laptop1.png`)} />
             </Main1>
-            <Main2>
-                <Line1 />
-                    <Desc21> </Desc21>
-                    <Desc22> </Desc22>
-                <Line2 />
-            </Main2>
+
             
             <Main3>
                 
-
             </Main3>
             
             <Main4>
@@ -302,8 +345,8 @@ const App2 = ({}: Props) => {
             </Footer>
             <Copyright></Copyright>
             
-            
-        </Scroll>
+            </Scroll>
+        </Container2>
         </Container>
     );
 }
