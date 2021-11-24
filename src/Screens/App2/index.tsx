@@ -388,16 +388,18 @@ const LabelF = Styled.Text<TextPosition>`
 
     color: #FFFFFF;
 `;
-const InputF = Styled.TextInput<Position>`
+const InputF = Styled.TextInput`
     height: 30px;
     width: 64%;
-    align-items: center;
+
+    padding: 0px;
+    padding-left: 5px;
 
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
-    line-height: 0px;
+    line-height: 10px;
 
     background: rgba(255, 255, 255, 0.5);
 `;
